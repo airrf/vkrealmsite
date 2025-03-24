@@ -1,0 +1,238 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>BasementCP</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="https://superp3d.xyz/favicon.ico.png" type="image/png">
+
+        <!-- Cargar tipografía Press Start 2P -->
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/styles/styles.css" type="text/css">
+
+        <!-- Fonts -->
+        <script src="assets/scripts/lib/webfont.js"></script>
+
+        <!-- Phaser -->
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+        <script src="assets/scripts/lib/phaser-cachebuster.min.js"></script>
+
+        <!-- Ruffle -->
+        <script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle/ruffle.min.js"></script>
+
+        <!-- Client bundle -->
+        <script src="assets/scripts/client/yukon.bundle.js"></script>
+
+        <style>
+            /* Estilos do fundo e layout */
+            .background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                filter: blur(8px);
+                z-index: 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(to bottom, #3a9bdc, #2663a8);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                overflow: auto;
+                position: relative;
+            }
+
+            .header {
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 2;
+            }
+
+            /* Container da logo para facilitar transição */
+            .logo {
+                width: 200px;
+                height: 100px;
+                cursor: pointer;
+                /* Transição suave para o efeito de drop-shadow */
+                transition: filter 0.3s ease;
+            }
+
+            /* Ajusta a imagem dentro do container */
+            .logo img {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            /* Efeito de glow no formato da imagem (PNG transparente) */
+            .logo:hover img {
+                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+            }
+
+            .language-switcher {
+                margin-top: 10px;
+                cursor: pointer;
+                font-size: 18px;
+                color: #fff;
+                background-color: transparent;
+                border: none;
+                font-family: 'Press Start 2P', sans-serif;
+            }
+
+            .language-switcher:hover {
+                text-decoration: underline;
+            }
+
+            /* Estilo do seletor de idiomas */
+            .language-selector-container {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .language-selector {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 5px 15px;
+                font-size: 14px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                display: flex;
+                align-items: center;
+            }
+
+            .language-selector:hover {
+                background-color: #2980b9;
+            }
+
+            .language-selector span {
+                margin-right: 10px;
+            }
+
+            /* Estilo do botão de troca de idioma */
+            .language-switcher {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                font-family: 'Press Start 2P', sans-serif;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .language-switcher:hover {
+                background-color: #2980b9;
+                transform: scale(1.1);
+            }
+
+            /* Estilos da política de privacidade */
+            .privacy-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            .privacy-section {
+                background-color: #fff;
+                padding: 20px;
+                border: 2px solid #ccc;
+                border-radius: 15px;
+                max-width: 700px;
+                width: 90%;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                overflow-y: scroll;
+                max-height: 80%;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Scroll personalizado */
+            .privacy-section::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            .privacy-section::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            .privacy-section::-webkit-scrollbar-thumb {
+                background: #3498db;
+                border-radius: 10px;
+            }
+
+            .privacy-section::-webkit-scrollbar-thumb:hover {
+                background: #2980b9;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 15px;
+                font-size: 24px;
+            }
+
+            h2 {
+                margin-top: 15px;
+                color: #333;
+                font-size: 18px;
+            }
+
+            p {
+                margin-bottom: 8px;
+                line-height: 1.6;
+                color: #555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="background"></div>
+
+        <div class="header">
+            <!-- Clicar na logo leva para index.html -->
+            <a href="BasementHome.html">
+                <div class="logo">
+                    <img src="BasementCPLogo.png" alt="Logo do BasementCP">
+                </div>
+            </a>
+
+            <div class="language-selector-container">
+                <select id="language-selector" class="language-selector">
+                    <option value="en"><span>🌐</span> English</option>
+                    <option value="es"><span>🌐</span> Español</option>
+                    <option value="pt"><span>🌐</span> Português</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="privacy-container">
+            <div class="privacy-section" id="privacy-section">
+                <h1 id="policy-title">Basement Club Penguin Lore</h1>
+                <!-- Conteúdo da política de privacidade -->
+            </div>
+        </div>
+
+    </body>
+</html>

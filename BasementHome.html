@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basement Club Penguin</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0079A3, #2BAAE2);
+        }
+
+        @font-face { font-family: FontKK; src: url('ReadyforAnythingBB-Regular.ttf') } 
+        h5 {
+            font-family: FontKK;
+        }
+
+        @font-face { font-family: cpfont; src: url('burbank-big-regular-black.otf') } 
+        h6 {
+            font-family: cpfont;
+        }
+
+        .top-bar {
+            background: linear-gradient(to bottom, #2BAAE2, #0079A3);
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between; /* Espaço entre logo e botão */
+            align-items: center;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 5);
+        }
+
+        .top-bar-logo img {
+            height: 100px;
+            width: 200px;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .top-bar-logo img:hover {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+        }
+
+        .top-bar-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-bar-button button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .top-bar-button img {
+            width: 120px;
+            height: 55px;
+            transition: transform 0.3s ease, filter 0.2s ease;
+        }
+
+        .top-bar-button img:hover {
+            filter: brightness(85%); /* Escurece a imagem no hover */
+            transform: scale(0.98); /* Dá a sensação de pressionar */
+        }
+
+        .top-bar-button img:active {
+            transform: scale(0.95); /* Pressiona o botão ao clicar */
+        }
+
+        /* Estilo das Seções */
+        section {
+            background-color: white;
+            padding: 40px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Menor largura para que não ocupe toda a página */
+            max-width: 1200px; /* Tamanho máximo da seção */
+        }
+
+        section h2 {
+            color: #0079A3;
+            font-family: cpfont;
+        }
+
+        section p {
+            font-size: 16px;
+            line-height: 1.6;
+            font-family: FontKK;
+        }
+
+        .section1 {
+    background: linear-gradient(to bottom, #F4C20D, #E5A00D); /* Gradiente amarelo queimado */
+    border: 6px solid #FFD700; /* Borda amarela brilhante */
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 20px; /* Bordas arredondadas */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Sombra para efeito 3D */
+    width: 85%;
+    max-width: 1000px;
+    text-align: center;
+    position: relative;
+}
+
+/* Contorno azul escuro ao redor da borda amarela */
+.section::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 6px solid #1C3D6E; /* Contorno azul escuro */
+    border-radius: 26px;
+    z-index: -1;
+}
+
+/* Títulos das sections */
+.section h2 {
+    font-family: 'cpfont', sans-serif;
+    color: #000000; /* Azul escuro do Club Penguin */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Texto dentro da Section */
+.section p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+        .footer {
+            background: linear-gradient(to bottom, #2BAAE2, #0079A3);
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 100px;
+            width: 200px;
+            transition: 0.3s ease;
+        }
+
+        .language-selector-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .language-selector {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-selector:hover {
+            background-color: #2980b9;
+        }
+
+        .language-selector span {
+            margin-right: 10px; /* Espaço entre o emoji e o texto */
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s, text-decoration 0.3s;
+            font-family: FontKK;
+        }
+
+        .footer-links a:hover {
+            color: rgb(255, 255, 0); /* Yellow color on hover */
+            text-decoration: underline;
+        }
+
+        .footer-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-buttons button {
+            background: #3498db;
+            border: none;
+            padding: 10px;
+            color: white;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .footer-buttons button:hover {
+            background: #2980b9;
+        }
+
+        .footer-buttons button img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .logo1 {
+            width: 200px;
+            height: 100px;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+        }
+
+        .logo1:hover {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+        }
+
+        /* Estilo do Join Now */
+        .join-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #7cb0e1; /* Slightly darker blue background */
+            border: 4px solid #2663a8; /* Dark blue border */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow */
+            padding: 30px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .join-section .text-content {
+            flex: 1;
+            color: #fff;
+            margin-right: 20px;
+        }
+
+        .join-section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 0 10px;
+        }
+
+        .join-section p {
+            font-size: 16px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .join-section .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .join-section .join-now-btn {
+            background: linear-gradient(to bottom, #ffec4f, #fabe1f); /* Bright yellow gradient */
+            color: #aa841a; /* Black text */
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid #c9a400; /* Yellow-orange border */
+            border-radius: 15px;
+            padding: 10px 30px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b68e00, 0 5px 10px rgba(0, 0, 0, 0.2); /* Button shadow */
+            transition: all 0.2s ease-in-out;
+            font-family: 'cpfont';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .join-section .join-now-btn img {
+            max-width: 25px; /* Ajuste o tamanho da imagem */
+            margin-right: 10px; /* Espaço entre imagem e barra */
+            filter: sepia(1) saturate(5) hue-rotate(-10deg) brightness(0.9); /* Filtro para aproximar da cor #aa841a */
+        }
+
+        .join-section .join-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #b68e00, 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .join-section .join-now-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #b68e00, 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .join-section img {
+            max-width: 150px;
+            border-radius: 10px; /* Optional for rounded edges */
+        }
+        .yellow-section {
+    background: linear-gradient(to bottom, #F4C20D, #E5A00D); /* Gradiente de amarelo queimado */
+    border: 6px solid #FFD700; /* Borda amarela brilhante */
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 20px; /* Bordas arredondadas */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Sombra para efeito 3D */
+    width: 85%;
+    max-width: 1000px;
+    text-align: center;
+    position: relative;
+}
+
+/* Adiciona um contorno azul escuro ao redor da borda amarela */
+.yellow-section::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 6px solid #1C3D6E; /* Contorno azul escuro */
+    border-radius: 26px;
+    z-index: -1;
+}
+
+/* Estilo do título */
+.yellow-section h2 {
+    font-family: 'cpfont', sans-serif;
+    color: #000000; /* Cor do título em azul escuro */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Estilo do texto */
+.yellow-section p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+    </style>
+</head>
+<body>
+
+<!-- Barra Superior -->
+<div class="top-bar">
+    <div class="top-bar-logo">
+        <img src="BasementCPLogo.png" alt="Club Penguin Logo" class="logo1">
+    </div>
+    <div class="top-bar-button">
+        <button type="image">
+            <img class="hover-image" src="PlayNowButton.png" width="150px" height="70px" onclick="window.location.href='404.html'" width="120" height="55">
+        </button>
+    </div>
+</div>
+
+<!-- Seções -->
+<section>
+    <h2>Welcome to Basement Club Penguin!</h2>
+    <p>Explore a world full of adventures, mini-games, and icy mysteries! In Basement Club Penguin, you can meet new friends, adopt puffles, and have endless fun. Join now and start your journey!</p>
+</section>
+
+<section>
+    <h2>Mini-Games and Fun</h2>
+    <p>Challenge yourself with a variety of exciting mini-games! Play Cart Surfer, go fishing in Ice Fishing, or engage in epic battles at the Dojo. No matter your style, there’s always something new to discover!</p>
+</section>
+
+<section>
+    <h2>Join Our Community</h2>
+    <p>Want to stay updated on the latest news, events, and secrets of Basement Club Penguin? Join our Discord and be part of a vibrant community of players!</p>
+</section>
+
+<section class="yellow-section">
+    <img src="Opening.png" height="80" width="150">
+    <h2>Grand Opening and Prizes</h2>
+    <h5> OUR OPENING IS NEAR! party time woohoo! Who join us in the opening day will win prizes!!!</h5>
+</section>
+
+<!-- Seção Join Now -->
+<div class="join-section">
+    <div class="text-content">
+        <h2>Join Our Discord Community!</h2>
+        <p>Join our Discord to stay updated, participate in events, and chat with fellow penguins! Be part of the adventure!</p>
+    </div>
+
+    
+
+    <div class="button-container">
+        <a href="https://discord.gg/YMfxJrN3NU" class="join-now-btn">
+            <img src="Discordlogo.png" alt="Penguin Character"> Join Now
+        </a>
+    </div>
+</div>
+
+<!-- Rodapé -->
+<footer class="footer">
+    <div class="footer-logo">
+        <img src="BasementCPLogo.png" alt="Club Penguin Logo" class="logo1">
+        <!-- Botão de troca de idioma com emoji dentro -->  
+            <select class="language-selector" onchange="changeLanguage(this.value)">
+                <option value="en">🌐 English</option>
+                <option value="es">🌐 Español</option>
+                <option value="pt">🌐 Português</option>
+            </select>
+            
+        </div>
+    </div>
+    <div class="footer-links"> 
+        <a href="Support.html">Support</a>
+        <a href="PrivacyPolicy.html">Privacy Policy</a>
+        <a href="basementcplore.html">Lore</a>
+    </div>
+    <div class="footer-links">
+        <a href="https://discord.gg/PNtEecECHM"> VKR Discord</a>
+        <a href="https://www.youtube.com/@vikingrealmentertainment"> VKR YouTube</a>
+    </div>
+    <div class="footer-buttons">
+        <button onclick="window.location.href='404.html'"><img src="OmgEmoji.png" alt="cangps"> Change Password</button>
+        <button onclick="window.location.href='404.html'"><img src="WooHooEmoji.png" alt="YouTube"> Change Email</button>
+    </div>
+</footer>
+
+<script>
+    // Conteúdo dos idiomas
+    const content = {
+    en: {
+        welcome: "Welcome to Basement Club Penguin!",
+        welcomeText: "Explore a world full of adventures, mini-games, and icy mysteries! In Basement Club Penguin, you can meet new friends, adopt puffles, and have endless fun. Join now and start your journey!",
+        miniGames: "Mini-Games and Fun",
+        miniGamesText: "Challenge yourself with a variety of exciting mini-games! Play Cart Surfer, go fishing in Ice Fishing, or engage in epic battles at the Dojo. No matter your style, there’s always something new to discover!",
+        joinCommunity: "Join Our Community",
+        joinCommunityText: "Want to stay updated on the latest news, events, and secrets of Basement Club Penguin? Join our Discord and be part of a vibrant community of players!",
+        discordTitle: "Join Our Discord Community!",
+        discordDesc: "Join our Discord to stay updated, participate in events, and chat with fellow penguins! Be part of the adventure!",
+        yellowSectionTitle: "Grand Opening and Prizes",
+        yellowSectionText: "OUR OPENING IS NEAR! Party time woohoo! Those who join us on opening day will win prizes!!!"
+    },
+    es: {
+        welcome: "¡Bienvenido a Basement Club Penguin!",
+        welcomeText: "¡Explora un mundo lleno de aventuras, mini-juegos y misterios helados! En Basement Club Penguin, puedes hacer nuevos amigos, adoptar puffles y divertirte sin fin. ¡Únete ahora y comienza tu viaje!",
+        miniGames: "Juegos y Diversión",
+        miniGamesText: "¡Rétate a ti mismo con una variedad de emocionantes mini-juegos! Juega a Cart Surfer, pesca en Ice Fishing, o participa en batallas épicas en el Dojo. ¡No importa tu estilo, siempre hay algo nuevo por descubrir!",
+        joinCommunity: "Únete a nuestra comunidad",
+        joinCommunityText: "¿Quieres estar al tanto de las últimas noticias, eventos y secretos de Basement Club Penguin? Únete a nuestro Discord y sé parte de una comunidad vibrante de jugadores.",
+        discordTitle: "¡Únete a nuestra comunidad de Discord!",
+        discordDesc: "¡Únete a nuestro Discord para estar al día, participar en eventos y charlar con otros pingüinos! ¡Sé parte de la aventura!",
+        yellowSectionTitle: "Gran Apertura y Premios",
+        yellowSectionText: "¡LA APERTURA ESTÁ CERCA! ¡Hora de fiesta, woohoo! ¡Quienes se unan en el día de apertura ganarán premios!"
+    },
+    pt: {
+        welcome: "Bem-vindo ao Basement Club Penguin!",
+        welcomeText: "Explore um mundo cheio de aventuras, mini-jogos e mistérios gelados! No Basement Club Penguin, você pode fazer novos amigos, adotar puffles e se divertir sem fim. Junte-se agora e comece sua jornada!",
+        miniGames: "Mini-jogos e Diversão",
+        miniGamesText: "Desafie-se com uma variedade de mini-jogos emocionantes! Jogue Cart Surfer, pesque no Ice Fishing, ou participe de batalhas épicas no Dojo. Não importa o seu estilo, sempre há algo novo para descobrir!",
+        joinCommunity: "Junte-se à nossa comunidade",
+        joinCommunityText: "Quer ficar atualizado sobre as últimas notícias, eventos e segredos do Basement Club Penguin? Junte-se ao nosso Discord e seja parte de uma comunidade vibrante de jogadores!",
+        discordTitle: "Junte-se à nossa comunidade no Discord!",
+        discordDesc: "Junte-se ao nosso Discord para ficar atualizado, participar de eventos e conversar com outros pinguins! Faça parte da aventura!",
+        yellowSectionTitle: "Grand Opening e Prêmios",
+        yellowSectionText: "A NOSSA ABERTURA ESTÁ PRÓXIMA! Hora da festa, woohoo! Quem se juntar a nós no dia de abertura ganhará prêmios!!!"
+    }
+};
+
+
+    // function changeLanguage(language) {
+    // Atualiza o conteúdo das seções
+    function changeLanguage(language) {
+    document.querySelector('section h2:nth-of-type(1)').textContent = content[language].welcome;
+    document.querySelector('section p:nth-of-type(1)').textContent = content[language].welcomeText;
+    
+    document.querySelector('section:nth-of-type(2) h2').textContent = content[language].miniGames;
+    document.querySelector('section:nth-of-type(2) p').textContent = content[language].miniGamesText;
+    
+    document.querySelector('section:nth-of-type(3) h2').textContent = content[language].joinCommunity;
+    document.querySelector('section:nth-of-type(3) p').textContent = content[language].joinCommunityText;
+    
+    document.querySelector('.join-section h2').textContent = content[language].discordTitle;
+    document.querySelector('.join-section p').textContent = content[language].discordDesc;
+
+    // Atualiza a seção amarela
+    document.querySelector('.yellow-section h2').textContent = content[language].yellowSectionTitle;
+    document.querySelector('.yellow-section h5').textContent = content[language].yellowSectionText;
+} 
+
+</script>
+
+
+
+
+</body>
+</html>

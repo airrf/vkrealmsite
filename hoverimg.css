@@ -1,0 +1,14 @@
+.image-container {
+    position: relative;
+    width: 300px; /* Adjust the width as needed */
+}
+
+.hover-image {
+    width: 80%;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.hover-image:hover {
+    transform: scale(1.1); /* Zoom in effect */
+    filter: brightness(80%); /* Darken the image */
+}         

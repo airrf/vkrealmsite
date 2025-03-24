@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BasementCP - Support</title>
+
+  <!-- Fontes locais -->
+  <style>
+    @font-face {
+      font-family: 'Bumbasti';
+      src: url('path/to/Bumbasti.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'ReadyForAnythingBBItalic';
+      src: url('path/to/ReadyForAnythingBBItalic.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: FontKK;
+      src: url('ReadyforAnythingBB-Regular.ttf');
+    }
+
+    /* Estilos gerais */
+    body {
+      background: linear-gradient(to top, #3a9bdc, #2663a8);
+      font-family: 'ReadyForAnythingBBItalic', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      height: 85vh;
+      overflow-y: auto;
+      color: black; /* Textos dentro do container em cor escura */
+    }
+
+    h1 {
+      font-family: 'Bumbasti', sans-serif;
+      font-size: 18px;
+      color: #3498db;
+      text-align: center;
+    }
+
+    h2 {
+      font-family: 'Bumbasti', sans-serif;
+      font-size: 16px;
+      margin-top: 10px;
+      color: #000000;
+    }
+
+    h5 {
+      font-family: FontKK;
+      font-size: 18px;
+      color: #000000;
+      text-align: center;
+      margin: 5px 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    label {
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+      padding: 6px;
+      border-radius: 8px;
+      border: 2px solid #3498db;
+      font-size: 10px;
+      margin-bottom: 8px;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background-color 0.3s ease;
+      font-family: FontKK;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+
+    .contact-info {
+      margin-top: 10px;
+      font-size: 10px;
+    }
+
+    .contact-info a {
+      color: #00a2ff;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    /* LOGO com efeito de glow */
+    .logo1 {
+      width: 200px;
+      height: 100px;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+
+    .logo1:hover {
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    }
+
+    .language-selector-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .language-selector {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 5px 15px;
+      font-size: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .language-selector:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <!-- Logo envolvida pelo link para redirecionar à página principal -->
+    <a href="BasementHome.html">
+      <img class="logo1" src="BasementCPLogo.png" alt="Logo do BasementCP">
+    </a>
+    <div class="language-selector-container">
+      <select id="language-selector" class="language-selector">
+        <option value="en" selected>🌐 English</option>
+        <option value="es">🌐 Español</option>
+        <option value="pt">🌐 Português</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="container">
+    <h5 id="header-title">Suporte do BasementCP</h5>
+    <h5 id="contact-form-title">Formulário de Contato</h5>
+    <form id="supportForm" action="https://formspree.io/f/xvgzddnn" method="POST">
+      <label for="email" id="label-email">Seu E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="nickname" id="label-nickname">Nick do Jogo:</label>
+      <input type="text" id="nickname" name="nickname" required>
+
+      <label for="message" id="label-message">Descrição:</label>
+      <textarea id="message" name="message" rows="3" required></textarea>
+
+      <input type="submit" id="submit-button" value="Enviar Solicitação">
+    </form>
+
+    <h5 id="other-contact-title">Outras Formas de Contato</h5>
+    <div class="contact-info">
+      <h2 id="contact-info-text">
+        Envie um e-mail diretamente para 
+        <a href="mailto:basementcpsupport@vkrealm.xyz">basementcpsupport@vkrealm.xyz</a>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Script para redirecionamento do formulário e tradução -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Redirecionamento do formulário: após envio, redireciona para a página principal
+      const form = document.getElementById("supportForm");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Impede o redirecionamento automático do navegador
+
+        fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(response => {
+          if (response.ok) {
+            // Redireciona para a página principal (BasementHome.html)
+            window.location.href = "sucess.html";
+          } else {
+            alert("Erro ao enviar formulário. Tente novamente.");
+          }
+        }).catch(() => alert("Erro ao enviar formulário."));
+      });
+
+      // Traduções para os textos da página
+      const translations = {
+        en: {
+          "header-title": "BasementCP Support",
+          "contact-form-title": "Contact Form",
+          "label-email": "Email:",
+          "label-nickname": "Game Nickname:",
+          "label-message": "Description:",
+          "submit-button": "Submit Request",
+          "other-contact-title": "Other Ways of Contact",
+          "contact-info-text": "Send an email directly to "
+        },
+        es: {
+          "header-title": "Soporte de BasementCP",
+          "contact-form-title": "Formulario de Contacto",
+          "label-email": "Correo electrónico:",
+          "label-nickname": "Apodo de juego:",
+          "label-message": "Descripción:",
+          "submit-button": "Enviar Solicitud",
+          "other-contact-title": "Otras Formas de Contacto",
+          "contact-info-text": "Envía un correo electrónico directamente a "
+        },
+        pt: {
+          "header-title": "Suporte do BasementCP",
+          "contact-form-title": "Formulário de Contato",
+          "label-email": "Seu E-mail:",
+          "label-nickname": "Nick do Jogo:",
+          "label-message": "Descrição:",
+          "submit-button": "Enviar Solicitação",
+          "other-contact-title": "Outras Formas de Contato",
+          "contact-info-text": "Envie um e-mail diretamente para "
+        }
+      };
+
+      // Função para alterar o idioma
+      function changeLanguage(lang) {
+        const texts = translations[lang];
+        for (const id in texts) {
+          const element = document.getElementById(id);
+          if (element) {
+            if (element.tagName.toLowerCase() === "input" && element.type === "submit") {
+              element.value = texts[id];
+            } else {
+              element.textContent = texts[id];
+            }
+          }
+        }
+        // Atualiza o texto da área de contato para manter o link intacto.
+        const contactInfo = document.getElementById("contact-info-text");
+        if (contactInfo) {
+          contactInfo.innerHTML = texts["contact-info-text"] +
+            '<a href="mailto:basementcpsupport@vkrealm.xyz">basementcpsupport@vkrealm.xyz</a>';
+        }
+      }
+
+      // Evento para o seletor de idioma
+      const languageSelector = document.getElementById("language-selector");
+      languageSelector.addEventListener("change", function(event) {
+        changeLanguage(event.target.value);
+      });
+
+      // Define o idioma inicial
+      changeLanguage(languageSelector.value);
+    });
+  </script>
+</body>
+</html>

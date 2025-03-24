@@ -1,0 +1,348 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>BasementCP</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="https://superp3d.xyz/favicon.ico.png" type="image/png">
+
+        <!-- Cargar tipografía Press Start 2P -->
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="assets/styles/styles.css" type="text/css">
+
+        <!-- Fonts -->
+        <script src="assets/scripts/lib/webfont.js"></script>
+
+        <!-- Phaser -->
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+        <script src="assets/scripts/lib/phaser-cachebuster.min.js"></script>
+
+        <!-- Ruffle -->
+        <script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle/ruffle.min.js"></script>
+
+        <!-- Client bundle -->
+        <script src="assets/scripts/client/yukon.bundle.js"></script>
+
+        <style>
+            /* Estilos do fundo e layout */
+            .background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                filter: blur(8px);
+                z-index: 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(to bottom, #3a9bdc, #2663a8);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                overflow: auto;
+                position: relative;
+            }
+
+            .header {
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 2;
+            }
+
+            /* LOGO */
+            .logo {
+                width: 200px;
+                height: 100px;
+                /* Para permitir o efeito de hover suave */
+                cursor: pointer;
+                transition: filter 0.3s ease;
+            }
+
+            /* Ao passar o mouse, aplica-se o drop-shadow diretamente na imagem 
+               para que o glow acompanhe a transparência do PNG */
+            .logo:hover {
+                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+            }
+
+            /* Se desejar que a imagem ocupe 100% da div e respeite proporções,
+               pode adicionar:
+               .logo img {
+                 width: 100%;
+                 height: 100%;
+                 object-fit: contain;
+               }
+            */
+
+            .language-switcher {
+                margin-top: 10px;
+                cursor: pointer;
+                font-size: 18px;
+                color: #fff;
+                background-color: transparent;
+                border: none;
+                font-family: 'Press Start 2P', sans-serif;
+            }
+
+            .language-switcher:hover {
+                text-decoration: underline;
+            }
+
+            /* Estilo do seletor de idiomas */
+            .language-selector-container {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .language-selector {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 5px 15px;
+                font-size: 14px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                display: flex;
+                align-items: center;
+            }
+
+            .language-selector:hover {
+                background-color: #2980b9;
+            }
+
+            .language-selector span {
+                margin-right: 10px;
+            }
+
+            /* Estilo do botão de troca de idioma */
+            .language-switcher {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                font-family: 'Press Start 2P', sans-serif;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .language-switcher:hover {
+                background-color: #2980b9;
+                transform: scale(1.1);
+            }
+
+            /* Estilos da política de privacidade */
+            .privacy-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            .privacy-section {
+                background-color: #fff;
+                padding: 20px;
+                border: 2px solid #ccc;
+                border-radius: 15px;
+                max-width: 700px;
+                width: 90%;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                overflow-y: scroll;
+                max-height: 80%;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Scroll personalizado */
+            .privacy-section::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            .privacy-section::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            .privacy-section::-webkit-scrollbar-thumb {
+                background: #3498db;
+                border-radius: 10px;
+            }
+
+            .privacy-section::-webkit-scrollbar-thumb:hover {
+                background: #2980b9;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 15px;
+                font-size: 24px;
+            }
+
+            h2 {
+                margin-top: 15px;
+                color: #333;
+                font-size: 18px;
+            }
+
+            p {
+                margin-bottom: 8px;
+                line-height: 1.6;
+                color: #555;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="background"></div>
+
+        <div class="header">
+            <!-- LOGO -->
+            <a href="BasementHome.html">
+            <img class="logo" src="BasementCPLogo.png" alt="Logo do BasementCP">
+        </a>
+
+            <div class="language-selector-container">
+                <select id="language-selector" class="language-selector">
+                    <option value="en"><span>🌐</span> English</option>
+                    <option value="es"><span>🌐</span> Español</option>
+                    <option value="pt"><span>🌐</span> Português</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="privacy-container">
+            <div class="privacy-section" id="privacy-section">
+                <h1 id="policy-title">Privacy Policy for Basement Club Penguin</h1>
+                <p id="last-updated">Last Updated: [Date]</p>
+
+                <h2 id="section-1">1. Information We Collect</h2>
+                <p id="section-1-content">We may collect personally identifiable information, such as username and email address...</p>
+
+                <h2 id="section-2">2. How We Use Your Information</h2>
+                <p id="section-2-content">We use the information we collect to...</p>
+
+                <h2 id="section-3">3. Sharing of Information</h2>
+                <p id="section-3-content">We do not share your personal information with third parties except when required by law...</p>
+
+                <h2 id="section-4">4. Information Security</h2>
+                <p id="section-4-content">We take reasonable measures to protect your personal information...</p>
+
+                <h2 id="section-5">5. Cookies and Tracking Technologies</h2>
+                <p id="section-5-content">Basement Club Penguin may use cookies...</p>
+
+                <h2 id="section-6">6. Children’s Privacy</h2>
+                <p id="section-6-content">Our game is intended for users aged 13 and over...</p>
+
+                <h2 id="section-7">7. Changes to This Privacy Policy</h2>
+                <p id="section-7-content">We may update this Privacy Policy periodically...</p>
+
+                <h2 id="section-8">8. Contact Us</h2>
+                <p id="section-8-content">If you have any questions or concerns about our Privacy Policy, please contact us at [your contact email].</p>
+            </div>
+        </div>
+
+        <script>
+            const translations = {
+                en: {
+                    "policy-title": "Privacy Policy for Basement Club Penguin",
+                    "last-updated": "Last Updated: 02/18/2025",
+                    "section-1": "1. Information We Collect",
+                    "section-1-content": "We may collect personally identifiable information, such as username and email address...",
+                    "section-2": "2. How We Use Your Information",
+                    "section-2-content": "We use the information we collect to...",
+                    "section-3": "3. Sharing of Information",
+                    "section-3-content": "We do not share your personal information with third parties except when required by law...",
+                    "section-4": "4. Information Security",
+                    "section-4-content": "We take reasonable measures to protect your personal information...",
+                    "section-5": "5. Cookies and Tracking Technologies",
+                    "section-5-content": "Basement Club Penguin may use cookies...",
+                    "section-6": "6. Children’s Privacy",
+                    "section-6-content": "Our game is intended for users aged 13 and over...",
+                    "section-7": "7. Changes to This Privacy Policy",
+                    "section-7-content": "We may update this Privacy Policy periodically...",
+                    "section-8": "8. Contact Us",
+                    "section-8-content": "If you have any questions or concerns about our Privacy Policy, please contact us at vikingrealmentertainment@vkrealm.xyz."
+                },
+                es: {
+                    "policy-title": "Política de privacidad de Basement Club Penguin",
+                    "last-updated": "Última actualización: 18/02/2025",
+                    "section-1": "1. Información que recopilamos",
+                    "section-1-content": "Podemos recopilar información personal identificable, como nombre de usuario y dirección de correo electrónico...",
+                    "section-2": "2. Cómo usamos tu información",
+                    "section-2-content": "Usamos la información que recopilamos para...",
+                    "section-3": "3. Compartir información",
+                    "section-3-content": "No compartimos tu información personal con terceros, excepto cuando lo exija la ley...",
+                    "section-4": "4. Seguridad de la información",
+                    "section-4-content": "Tomamos medidas razonables para proteger tu información personal...",
+                    "section-5": "5. Cookies y tecnologías de seguimiento",
+                    "section-5-content": "Basement Club Penguin puede usar cookies...",
+                    "section-6": "6. Privacidad infantil",
+                    "section-6-content": "Nuestro juego está destinado a usuarios de 13 años o más...",
+                    "section-7": "7. Cambios a esta política de privacidad",
+                    "section-7-content": "Podemos actualizar esta política de privacidad periódicamente...",
+                    "section-8": "8. Contáctanos",
+                    "section-8-content": "Si tienes alguna pregunta o inquietud sobre nuestra política de privacidad, por favor contáctanos en vikingrealmentertainment@vkrealm.xyz."
+                },
+                pt: {
+                    "policy-title": "Política de Privacidade do Basement Club Penguin",
+                    "last-updated": "Última atualização: 18/02/2025",
+                    "section-1": "1. Informações que Coletamos",
+                    "section-1-content": "Podemos coletar informações pessoais identificáveis, como nome de usuário e endereço de e-mail...",
+                    "section-2": "2. Como Usamos Suas Informações",
+                    "section-2-content": "Usamos as informações que coletamos para...",
+                    "section-3": "3. Compartilhamento de Informações",
+                    "section-3-content": "Não compartilhamos suas informações pessoais com terceiros, exceto quando exigido por lei...",
+                    "section-4": "4. Segurança da Informação",
+                    "section-4-content": "Tomamos medidas razoáveis para proteger suas informações pessoais...",
+                    "section-5": "5. Cookies e Tecnologias de Rastreamento",
+                    "section-5-content": "Basement Club Penguin pode usar cookies...",
+                    "section-6": "6. Privacidade das Crianças",
+                    "section-6-content": "Nosso jogo é destinado a usuários de 13 anos ou mais...",
+                    "section-7": "7. Mudanças nesta Política de Privacidade",
+                    "section-7-content": "Podemos atualizar esta Política de Privacidade periodicamente...",
+                    "section-8": "8. Contate-Nos",
+                    "section-8-content": "Se você tiver dúvidas ou preocupações sobre nossa Política de Privacidade, entre em contato conosco pelo vikingrealmentertainment@vkrealm.xyz."
+                }
+            };
+
+            // Função para trocar o idioma
+            function changeLanguage(language) {
+                const selectedLanguage = translations[language];
+                for (const key in selectedLanguage) {
+                    if (selectedLanguage.hasOwnProperty(key)) {
+                        const element = document.getElementById(key);
+                        if (element) {
+                            element.textContent = selectedLanguage[key];
+                        }
+                    }
+                }
+            }
+
+            // Adiciona o evento de mudança do idioma
+            document.getElementById('language-selector').addEventListener('change', (event) => {
+                changeLanguage(event.target.value);
+            });
+
+            // Define o idioma inicial
+            changeLanguage('en');
+        </script>
+    </body>
+</html>
